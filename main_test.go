@@ -82,3 +82,33 @@ func TestSumGroup(t *testing.T) {
 	})
 
 }
+
+func TestConvertInput(t *testing.T) {
+	exampleCC := "1036787567886619"
+
+	got := ConvertInput(exampleCC)
+	want := [16]int{1, 0, 3, 6, 7, 8, 7, 5, 6, 7, 8, 8, 6, 6, 1, 9}
+
+	if got != want {
+		fmt.Printf("got %d want %d", got, want)
+		t.Errorf("got %v want %v", got, want)
+	}
+
+}
+
+func TestValidate(t *testing.T) {
+	// Example credit card array
+	exampleCC := [16]int{1, 0, 3, 6, 7, 8, 7, 5, 6, 7, 8, 8, 6, 6, 1, 9}
+
+	// Call Validate function
+	got := Validate(exampleCC)
+
+	// Expected result
+	want := 00
+
+	if got != want {
+		t.Errorf("Test failed: got %d, want %d", got, want)
+	} else {
+		fmt.Println("Credit Card Number validated by Luhn's Algorithm")
+	}
+}
