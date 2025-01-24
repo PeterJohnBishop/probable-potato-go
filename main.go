@@ -117,7 +117,13 @@ func setupRouter() *gin.Engine {
 func main() {
 	r := setupRouter()
 	// Listen and Server in 0.0.0.0:8080
+
+	exampleCard := validation.Credit{TextCardNumber: "1036787567886619"}
+
+	exampleCard.ConvertInput()
+	exampleCard.Validate()
+	fmt.Println(exampleCard.Valid)
+
 	r.Run("0.0.0.0:8080")
 
-	validation.Validate([16]int{4, 3, 5, 5, 7, 7, 8, 5, 7, 4, 6, 9, 6, 6, 1, 9})
 }

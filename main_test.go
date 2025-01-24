@@ -86,9 +86,9 @@ func TestSumGroup(t *testing.T) {
 }
 
 func TestConvertInput(t *testing.T) {
-	exampleCC := "1036787567886619"
+	card := validation.Credit{TextCardNumber: "1036787567886619"}
 
-	got := validation.ConvertInput(exampleCC)
+	got := card.ConvertInput()
 	want := [16]int{1, 0, 3, 6, 7, 8, 7, 5, 6, 7, 8, 8, 6, 6, 1, 9}
 
 	if got != want {
@@ -100,13 +100,13 @@ func TestConvertInput(t *testing.T) {
 
 func TestValidate(t *testing.T) {
 	// Example credit card array
-	exampleCC := [16]int{1, 0, 3, 6, 7, 8, 7, 5, 6, 7, 8, 8, 6, 6, 1, 9}
+	card := validation.Credit{CardNumberArr: [16]int{1, 0, 3, 6, 7, 8, 7, 5, 6, 7, 8, 8, 6, 6, 1, 9}}
 
 	// Call Validate function
-	got := validation.Validate(exampleCC)
+	got := card.Validate()
 
 	// Expected result
-	want := 00
+	want := true
 
 	if got != want {
 		t.Errorf("Test failed: got %d, want %d", got, want)
