@@ -2,14 +2,16 @@ package main
 
 import (
 	"fmt"
+	"probable-potato-go/main.go/basic"
+	"probable-potato-go/main.go/validation"
 	"testing"
 )
 
 func TestHello(t *testing.T) {
 
-	fmt.Println(Hello("Peter"))
+	fmt.Println(basic.Hello("Peter"))
 
-	got := Hello("Chris")
+	got := basic.Hello(("Chris"))
 	want := "Hello, Chris"
 
 	if got != want {
@@ -18,10 +20,10 @@ func TestHello(t *testing.T) {
 }
 
 func TestAdder(t *testing.T) {
-	sum := Add(2, 2)
+	sum := basic.Add(2, 2)
 	expected := 4
 
-	fmt.Println(Add(2, 2))
+	fmt.Println(basic.Add(2, 2))
 
 	if sum != expected {
 		t.Errorf("expected '%d' but got '%d'", expected, sum)
@@ -29,10 +31,10 @@ func TestAdder(t *testing.T) {
 }
 
 func TestRepeat(t *testing.T) {
-	repeated := Repeat("a")
+	repeated := basic.Repeat("a")
 	expected := "aaaaa"
 
-	fmt.Println(Repeat(("a")))
+	fmt.Println(basic.Repeat(("a")))
 
 	if repeated != expected {
 		t.Errorf("expected %q but got %q", expected, repeated)
@@ -43,9 +45,9 @@ func TestSum(t *testing.T) {
 
 	numbers := [5]int{1, 2, 3, 4, 5}
 
-	fmt.Println(Sum((numbers)))
+	fmt.Println(basic.Sum((numbers)))
 
-	got := Sum(numbers)
+	got := basic.Sum(numbers)
 	want := 15
 
 	if got != want {
@@ -58,9 +60,9 @@ func TestSumGroup(t *testing.T) {
 	t.Run("collection of 5 numbers", func(t *testing.T) {
 		numbers := [5]int{1, 2, 3, 4, 5}
 
-		fmt.Println(Sum((numbers)))
+		fmt.Println(basic.Sum((numbers)))
 
-		got := Sum(numbers)
+		got := basic.Sum(numbers)
 		want := 15
 
 		if got != want {
@@ -71,9 +73,9 @@ func TestSumGroup(t *testing.T) {
 	t.Run("collection of any size", func(t *testing.T) {
 		numbers := []int{1, 2, 3}
 
-		fmt.Println(SumSlice(numbers))
+		fmt.Println(basic.SumSlice(numbers))
 
-		got := SumSlice(numbers)
+		got := basic.SumSlice(numbers)
 		want := 6
 
 		if got != want {
@@ -86,7 +88,7 @@ func TestSumGroup(t *testing.T) {
 func TestConvertInput(t *testing.T) {
 	exampleCC := "1036787567886619"
 
-	got := ConvertInput(exampleCC)
+	got := validation.ConvertInput(exampleCC)
 	want := [16]int{1, 0, 3, 6, 7, 8, 7, 5, 6, 7, 8, 8, 6, 6, 1, 9}
 
 	if got != want {
@@ -101,7 +103,7 @@ func TestValidate(t *testing.T) {
 	exampleCC := [16]int{1, 0, 3, 6, 7, 8, 7, 5, 6, 7, 8, 8, 6, 6, 1, 9}
 
 	// Call Validate function
-	got := Validate(exampleCC)
+	got := validation.Validate(exampleCC)
 
 	// Expected result
 	want := 00

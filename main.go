@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"probable-potato-go/main.go/validation"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -118,5 +119,5 @@ func main() {
 	// Listen and Server in 0.0.0.0:8080
 	r.Run("0.0.0.0:8080")
 
-	Validate([16]int{4, 3, 5, 5, 7, 7, 8, 5, 7, 4, 6, 9, 6, 6, 1, 9})
+	validation.Validate([16]int{4, 3, 5, 5, 7, 7, 8, 5, 7, 4, 6, 9, 6, 6, 1, 9})
 }
