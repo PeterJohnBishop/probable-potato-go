@@ -1,14 +1,30 @@
 package validation
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
+
+	"time"
 )
 
 type Credit struct {
-	TextCardNumber string
-	CardNumberArr  [16]int
-	Valid          bool
+	Name           string    `json:"name"`
+	TextCardNumber string    `json:"cardNumber"`
+	Cvv            string    `json:"cvv"`
+	Expiration     time.Time `json:"expiration"`
+	CardNumberArr  [16]int   `json:"cardNumArr"`
+	Valid          bool      `json:"valid"`
+}
+
+func (cc Credit) ToJSON() ([]byte, error) {
+	fmt.Printf("Name: %s", cc.Name)
+	fmt.Printf("Card Number: %s", cc.TextCardNumber)
+	fmt.Printf("Expiration Date: %s", cc.Expiration)
+	fmt.Printf("CVV: %s", cc.Cvv)
+	fmt.Printf("Card Number Validated: %t", cc.Valid)
+
+	return json.Marshal(cc)
 }
 
 func (cc *Credit) ConvertInput() [16]int {

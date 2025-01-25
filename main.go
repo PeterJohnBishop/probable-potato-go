@@ -118,11 +118,16 @@ func main() {
 	r := setupRouter()
 	// Listen and Server in 0.0.0.0:8080
 
-	exampleCard := validation.Credit{TextCardNumber: "1036787567886619"}
+	exampleCard := validation.Credit{Name: "Peter Bishop", Cvv: "387", TextCardNumber: "1036787567886619", Expiration: time.Date(2029, time.March, 14, 0, 0, 0, 0, time.UTC)}
 
 	exampleCard.ConvertInput()
 	exampleCard.Validate()
-	fmt.Println(exampleCard.Valid)
+	jsonData, err := exampleCard.ToJSON()
+	if err != nil {
+		fmt.Println("Error encoding JSON:", err)
+		return
+	}
+	fmt.Println(string(jsonData))
 
 	r.Run("0.0.0.0:8080")
 
