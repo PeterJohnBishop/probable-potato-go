@@ -109,8 +109,24 @@ func TestValidate(t *testing.T) {
 	want := true
 
 	if got != want {
-		t.Errorf("Test failed: got %d, want %d", got, want)
+		t.Errorf("Test failed: got %t, want %t", got, want)
 	} else {
 		fmt.Println("Credit Card Number validated by Luhn's Algorithm")
+	}
+}
+
+func TestWallet(t *testing.T) {
+
+	wallet := basic.Wallet{}
+
+	wallet.Deposit(10)
+
+	got := wallet.Balance()
+	want := 10
+
+	if got != want {
+		t.Errorf("got %d want %d", got, want)
+	} else {
+		fmt.Println(("Deposit of $10 successful."))
 	}
 }

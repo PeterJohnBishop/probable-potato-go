@@ -39,3 +39,17 @@ func SumSlice(numbers []int) int {
 	}
 	return sum
 }
+
+type Wallet struct {
+	money int
+	total int
+}
+
+func (w *Wallet) Deposit(money int) int {
+	w.total += money
+	return w.total
+}
+
+func (w Wallet) Balance() int {
+	return w.total
+}

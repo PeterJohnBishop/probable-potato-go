@@ -7,9 +7,10 @@ import (
 )
 
 type User struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 var users []User // mock database
@@ -17,6 +18,7 @@ var users []User // mock database
 func RegisterUserRoutes(router *gin.RouterGroup) {
 
 	router.POST("/", func(c *gin.Context) {
+
 		var newUser User
 		if err := c.ShouldBindJSON(&newUser); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid input"})
